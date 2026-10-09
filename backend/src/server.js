@@ -1,8 +1,8 @@
 import express from 'express'
 import "dotenv/config"
 import cors from "cors"
-import User from '../models/user.js';
-import { connectDB } from '../lib/db.js';
+import User from './models/user.js';
+import { connectDB } from './lib/db.js';
 import {clerkMiddleware} from '@clerk/express'
 
 import fs from 'fs';
