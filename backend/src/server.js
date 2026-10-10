@@ -6,6 +6,7 @@ import { connectDB } from './lib/db.js';
 import {clerkMiddleware} from '@clerk/express'
 import clerkWebhook from "./webhooks/clerk.js";
 import authRoutes from "./routes/auth.route.js"
+import messageRoutes from "./routes/message.route.js"
 
 import fs from 'fs';
 import path from  'path';
@@ -28,6 +29,7 @@ app.get("/health",(req,res)=>{
 })
 
 app.use("/api/auth",authRoutes)
+app.use("api/messages",messageRoutes)
 
 if(fs.existsSync(publicDir)){
     app.use(express.static(publicDir));
