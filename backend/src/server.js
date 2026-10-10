@@ -4,7 +4,7 @@ import cors from "cors"
 import User from './models/user.js';
 import { connectDB } from './lib/db.js';
 import {clerkMiddleware} from '@clerk/express'
-import clerkWebhook from "./webhooks/clerk.webhook.js";
+import clerkWebhook from "./webhooks/clerk.js";
 
 import fs from 'fs';
 import path from  'path';
