@@ -1,5 +1,5 @@
 import express from "express";
-import User from "../models/user";
+import User from "../models/user.js"
 import { verifyWebhook } from "@clerk/backend/webhooks";
 
 const router = express.Router();
@@ -22,9 +22,9 @@ router.post("/", async (req, res) => {
 
         
         const evt = await verifyWebhook(request, { signingSecret });
-
+  
         console.log(evt.type);
-
+        
         if (evt.type === "user.created" || evt.type === "user.updated") {
             const u = evt.data;
 
