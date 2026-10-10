@@ -5,6 +5,7 @@ import User from './models/user.js';
 import { connectDB } from './lib/db.js';
 import {clerkMiddleware} from '@clerk/express'
 import clerkWebhook from "./webhooks/clerk.js";
+import authRoutes from "./routes/auth.route.js"
 
 import fs from 'fs';
 import path from  'path';
@@ -25,6 +26,8 @@ app.get("/health",(req,res)=>{
 
     res.status(200).json({ok:true});
 })
+
+app.use("/api/auth",authRoutes)
 
 if(fs.existsSync(publicDir)){
     app.use(express.static(publicDir));
