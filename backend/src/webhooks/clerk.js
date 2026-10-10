@@ -35,8 +35,20 @@ router.post("/", async (req, res) => {
 
             await User.findOneAndUpdate(
                 { clerkId: u.id },
-                { clerkId: u.id, email, fullName, profilePic: u.image_url },
-                { new: true, upsert: true, setDefaultsOnInsert: true },
+                {
+                    $set: {
+                        clerkId: u.id,
+                        email,
+                        fullname: fullName,
+                        profilePicture: u.image_url,
+                    },
+                },
+                {
+                    new: true,
+                    upsert: true,
+                    setDefaultsOnInsert: true,
+                    runValidators: true,
+                },
             );
         }
 
