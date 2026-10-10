@@ -1,5 +1,5 @@
 import express from "express";
-import User from "../models/user.js";
+import User from "../models/user";
 import { verifyWebhook } from "@clerk/backend/webhooks";
 
 const router = express.Router();
@@ -20,8 +20,10 @@ router.post("/", async (req, res) => {
             body: payload,
         });
 
-        // throws if the signature is wrong or the body was tampered with; only then do we trust evt.
+        
         const evt = await verifyWebhook(request, { signingSecret });
+
+        console.log(evt.type);
 
         if (evt.type === "user.created" || evt.type === "user.updated") {
             const u = evt.data;
